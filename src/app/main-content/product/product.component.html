@@ -1,0 +1,197 @@
+<section class="container-product" #container>
+    <div class="content-header">
+        <div class="header-text">
+            <span>Inventario / Producto</span>
+        </div>
+        <span class="header-line"></span>
+    </div>
+    <div class="content-category">
+        <div class="category-options">
+            <div class="option-left">
+                <button class="button-create"  #open (click)="openModal(true,true)">
+                    <div class="create-ico">
+                        <i class="fa-regular fa-plus"></i>
+                    </div>
+                    <span class="text">Nuevo</span> 
+                </button>
+
+                <button class="button-rows">
+                    <div class="rows-ico">
+                        <div class="ico">
+                            <i class='bx bx-window-alt'></i>
+                        </div>
+                        <span class="text">Filas</span>
+                    </div>
+                    <div class="row">
+                        <i class='bx bx-chevron-right' ></i>
+                    </div>
+                </button>
+            </div>
+            <div class="option-right">
+                <div class="search-input">
+                    <span class="input-icon">
+                        <i class='bx bx-search'></i>
+                    </span>
+                    <input type="text" placeholder="Buscar" id="search-input">
+                </div>
+                <div class="option-filter">
+                    <span>Filtrar</span>
+                    <i class="fa-solid fa-filter"></i>
+                </div>
+                <div class="option-appearance">
+                    <div class="appearance-chart">
+                        <i class='bx bxl-microsoft' ></i>
+                    </div>
+                    <div class="appearance-line"></div>
+                    <div class="appearance-rows">
+                        <i class='bx bx-right-indent'></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-table">
+            <div class="container-table">
+
+                <div class="content-table">
+
+                    <div class="table-header">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Categoria</th>
+                                    <th>Fecha</th>
+                                    <th>Descripcion</th>
+                                    <th>Codigo</th>
+                                    <th>Precio</th>
+                                    <th>Stock</th>
+                                    <th>Minstock</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                          </table>
+                    </div>
+
+                    <div class="table">
+                        <table>
+                            <tbody>
+                                <tr *ngFor="let item of listProducts">
+                                    <td>{{item.id}}</td>
+                                    <td>{{item.nombre}}</td>
+                                    <td>{{ item.categoria.nombre }}</td>
+                                    <td>12/14/23</td>
+                                    <td>{{item.descripcion}}</td>
+                                    <td>{{item.codigo}}</td>
+                                    <td>{{item.precio}}</td>
+                                    <td>{{item.stock}}</td>
+                                    <td>{{item.stockminimo}}</td>
+                                    <td>
+                                        <div class="content-actions">
+                                            <button class="ico-update" #update (click)="openModal(false,false)" (click)="selectItem(item, item)">
+                                                <i class="fa-sharp fa-solid fa-pen"></i>
+                                            </button>
+                                            <button class="ico-delete" (click)="delete(item.id)">
+                                                <i class="fa-solid fa-trash-can"></i> 
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="content-pagination">
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- -----------------modal--------------------- -->
+
+<section class="container-modal" #modal>
+    <div class="modal-header">
+        <span *ngIf="isNew">Nuevo Producto</span>
+        <span *ngIf="!isNew">Actualizar Producto</span>
+        <div class="close-icon">
+            <i class="fas fa-regular fa-xmark" #close (click)="closeModal()"></i>
+        </div>
+    </div>
+    <form  action="" class="modal-form" [formGroup]="formProduct" (ngSubmit)="save()">
+        <div class="modal-content">
+            <div class="content-img">
+                <div class="input-image">
+                    <span></span>
+                </div>  
+            </div>
+            <div class="content-inputs">
+                <div class="input-name">
+                    <input type="text" formControlName="nombre">
+                    <span class="text-name">Nombre</span>
+                </div>
+                <div class="tree-inputs">
+                    <div class="input-price">
+                        <input type="text" formControlName="precio">
+                        <span class="text-name">Precio</span>
+                    </div>
+                    <div class="input-stock">
+                        <input type="text" formControlName="stock">
+                        <span class="text-name">Stock</span>
+                    </div>
+                    <div class="input-minstock">
+                        <input type="text" formControlName="stockminimo">
+                        <span class="text-name">Minstock</span>
+                    </div>
+                </div>
+                <div class="input-description">
+                    <textarea formControlName="descripcion"></textarea>
+                    <span class="text-name">Description</span>
+                </div>
+
+                <div class="two-inputs">
+                    <div class="input-code">
+                        <input type="text" formControlName="codigo">
+                        <span class="text-name">Codigo</span>
+                    </div>
+                    <div class="input-category">
+                        <div class="input" (click)="openDropdown()">
+                            <span>{{ selectedCategory?.nombre || 'Seleccionar' }}</span>
+                            <div class="iconCat">
+                                <i class='bx bx-chevron-right' [class.activeUrl]="togleIco"></i>
+                            </div>
+                        </div>
+                        <span class="text-name">Categoria</span>
+                        <div class="content-drop" [class.active]="dropActivo">
+                            <div class="drop-search">
+                                <div class="content-items">
+                                    <input type="text" placeholder="Buscar categoria">
+                                    <div class="search-icon">
+                                        <i class='bx bx-search' ></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="drop-options">
+                                <li class="items" *ngFor="let category of categorias" (click)="selectCategory(category); openDropdown()" [ngClass]="{ 'selected': category.id === selectedCategory?.id }">{{ category.nombre }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> 
+                
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <div class="button-create">
+                <button *ngIf="isNewBtn" type="submit" [disabled]="formProduct.invalid" (click)="closeModal()" #create>Crear</button>
+                <button *ngIf="!isNewBtn"  (click)="update()" (click)="closeModal()" #unpdate>Actualizar</button>
+            </div>
+            <div class="button-cancel" >
+                <button type="button" #cancel (click)="closeModal()">Cancelar</button>
+            </div>
+        </div>
+    </form>
+</section>

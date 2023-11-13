@@ -1,0 +1,152 @@
+<section class="container-sidebar" id="sidebar" #sidebar>
+
+    <div class="content-header"> 
+        <span class="header-logo">
+            <img src="./assets/logo-pi.png"/>
+        </span>
+        <span class="header-text" id="text-logo" #textLogo >Travel</span>
+    </div> 
+
+    <div class="content-navigation">
+
+        <div class="navigation-top">
+            <div class="navigation-search">
+                <div class="search-input">
+                    <span class="input-icon">
+                        <i class='bx bx-search'></i>
+                    </span>
+                    <input type="text" placeholder="Buscar" id="search-input" #searchInput >
+                </div>
+            </div>
+
+
+            <div class="navigation-menu">
+                <ul class="menu-item">
+                    <div class="title-menu" >
+                        <span class="title" #title id="text-title">Navegacion</span>
+                        <span class="line" #line id="text-line"></span>
+                    </div>  
+                    <li class="item">
+                        <a href="#" class="link" (click)="seleccionarTab(0)">
+                            <div class="link-icon">
+                                <i class='bx bxs-category'></i>
+                            </div>
+                            <span class="link-text" [ngClass]="{'text-link': isTextLinkVisible}" (click)="toggleSidebar()">Dashboard</span>
+                        </a>
+                    </li>
+                    <!-- --------------------trabajamos solo enesta parte---------------- -->
+                    <li class="item">
+                        <a href="#" class="link"  id="open-button" #openButton (click)="toggleContentOption()">
+                            <div class="link-icon">
+                                <i class='bx bxs-server'></i>
+                            </div>
+                            <div class="link-text" >
+                                <span>Inventario</span>
+                                <i class='bx bx-chevron-right dropdown-open'  id="dropdown-open" #dropdownOpen [class.rotate-icon]="isIcoActive"></i> <!--  no quitar el id-->
+                            </div>
+                        </a>
+                        <div class="dropdown" #dropdown [class.active-dropdown]="isPanelActive">
+                            <ul class="dropdown-option" #dropdownOption [ngClass]="{'visible-dropdown': isContentOptionVisible}">
+                                <li class="option" (click)="seleccionarTab(1)">
+                                    <div class="option-icon">
+                                        <i class='bx bxs-doughnut-chart' ></i>
+                                    </div>
+                                    <span class="text-option">Categoria</span>
+                                </li>
+                                <li class="option" (click)="seleccionarTab(2)">
+                                    <div class="option-icon">
+                                        <i class='bx bxs-speaker' ></i>
+                                    </div>
+                                    <span class="text-option">Producto</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- --------------------trabajamos solo enesta parte---------------- -->
+                    <li class="item">
+                        <a href="#" class="link" (click)="seleccionarTab(3)">
+                            <div class="link-icon">
+                                <i class='bx bxs-dollar-circle' ></i>
+                            </div>
+                            <span class="link-text" [ngClass]="{'text-link': isTextLinkVisible}" (click)="toggleSidebar()">Ventas</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#" class="link" (click)="seleccionarTab(4)">
+                            <div class="link-icon">
+                                <i class='bx bxs-check-shield' ></i>
+                            </div>
+                            <span class="link-text" [ngClass]="{'text-link': isTextLinkVisible}" (click)="toggleSidebar()">Usuarios</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#" class="link" (click)="seleccionarTab(5)">
+                            <div class="link-icon">
+                                <i class='bx bxs-group' ></i>
+                            </div>
+                            <span class="link-text" [ngClass]="{'text-link': isTextLinkVisible}" (click)="toggleSidebar()">Clientes</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#" class="link" (click)="seleccionarTab(6)">
+                            <div class="link-icon">
+                                <i class='bx bxl-product-hunt' ></i>
+                            </div>
+                            <span class="link-text" [ngClass]="{'text-link': isTextLinkVisible}" (click)="toggleSidebar()">Proveedores</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#" class="link" (click)="seleccionarTab(7)">
+                            <div class="link-icon">
+                                <i class='bx bxs-objects-horizontal-left'></i>
+                            </div>
+                            <span class="link-text" [ngClass]="{'text-link': isTextLinkVisible}" (click)="toggleSidebar()">Reportes</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="navigation-bottom" >
+
+            <div class="navigation-accout">
+                <ul class="account-item">
+                    <div class="title-account" >
+                        <span class="title" id="account-text" #cAtitle>Cuenta</span>
+                        <span class="line" id="account-line" #cAline></span>
+                    </div>  
+                    <li class="item">
+                        <a href="#" class="link" (click)="seleccionarTab(8)">
+                            <div class="link-icon">
+                                <i class="fa-sharp fa-solid fa-bell"></i>
+                            </div>
+                            <span class="link-text-account" [ngClass]="{'accout-text-link': isAccountLinkTextVisible}" (click)="toggleSidebar()">Notificaciones</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#" class="link" (click)="seleccionarTab(9)">
+                            <div class="link-icon">
+                                <i class="fa-solid fa-gear"></i>
+                            </div>
+                            <span class="link-text-account" [ngClass]="{'accout-text-link': isAccountLinkTextVisible}" (click)="toggleSidebar()">Ajustes</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#" class="link">
+                            <div class="link-icon">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            </div>
+                            <span class="link-text-account" [ngClass]="{'accout-text-link': isAccountLinkTextVisible}" (click)="toggleSidebar()">Cerrar sesion</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>    
+
+            <div class="navigation-dark">
+
+            </div>
+
+        </div>
+    </div>
+</section>

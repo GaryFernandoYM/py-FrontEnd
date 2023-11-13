@@ -1,0 +1,168 @@
+<section class="container-sale">
+    <div class="content-sale">
+        <div class="header-text">
+            <span>Nueva venta</span>
+        </div>
+        <span class="header-line"></span>
+    </div>
+    <form class="container-form" [formGroup]="formSale">
+        <div class="content-left">
+            <div class="info-client">
+                <div class="input-clinet">
+                    <input type="text" placeholder="Cliente">
+                    <div class="seach-ico">
+                        <i class='bx bx-search' ></i>
+                    </div>
+                    <!-- <button (click)=" openDropdownCli()" >
+                        <i class='bx bx-chevron-right' [class.activeUrl]="cliIco"></i>
+                    </button>
+                    <div class="dropdown-client" [class.active-dropdown]="cliActivo" formControlName="cliente_id">
+                        <ul>
+                            <li *ngFor="let c of clients" [value]="c.id">{{ c.nombres }}   {{ c.apellidos }}</li>
+                        </ul>
+                    </div> -->
+
+                    <select formControlName="producto_id">
+
+                        <option *ngFor="let c of clients" [value]="c.id">
+                           {{ c.nombres }}
+                        </option>
+                    </select>
+                    
+                </div>
+            </div>
+            <div class="venta-info">
+                <div class="venta-items">
+                    <div class="items">
+                        <div class="serie">
+                            <input type="text" class="input" placeholder="F111" formControlName="serie">
+                            <span>Serie</span>
+                        </div>
+                        <div class="numero">
+                            <input type="numero" class="input" placeholder="00001" formControlName="numero">
+                            <span>Numero</span>
+                        </div>
+                    </div>
+                    <div class="venta-description">
+                        <textarea placeholder="Descripcion" formControlName="descripcion"></textarea>
+                        <span>Descripcion</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-right">
+            <div class="input-product">
+                <div class="input-search">
+                    <input type="text" placeholder="Buscar productos">
+                    <div class="seach-ico">
+                        <i class='bx bx-search' ></i>
+                    </div>
+                    <!-- <button (click)="openDropdownProd()">
+                        <p>Productos</p>
+                        <i class='bx bx-chevron-right' [class.active-icoPro]="proIco"></i>
+                    </button>
+                    <div class="dropdown-product" [class.active-dropro]="proActivo" formControlName="cliente_id">
+                        <ul >
+                            <li>Porducto de primaver</li>
+                        </ul>
+                    </div> -->
+                    <select formControlName="cliente_id">
+                        <option *ngFor="let p of products" [value]="p.id">
+                          {{ p.nombre }}
+                        </option>
+                      </select>
+                </div>
+            </div>
+            <div class="content-table">
+                <div class="container-table">
+        
+                    <div class="content-table">
+    
+                        <div class="table-header">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th>Quitar</th>
+                                    </tr>
+                                </thead>
+                              </table>
+                        </div>
+    
+                        <div class="table">
+                            <table>
+                              <tbody>
+                                <tr *ngFor="let item of detail; let i = index">
+                                  <td>{{item.nombre}}</td>
+                                  <td id="cantidad">
+                                    <div class="conter">
+                                      <button class="suma" (click)="incrementarCantidad(item)">
+                                        <i class="fa-solid fa-plus"></i>
+                                      </button>
+                                      <div class="info-conter">
+                                        <span>{{item.cantidad}}</span>
+                                      </div>
+                                      <button class="resta" (click)="decrementarCantidad(item)">
+                                        <i class="fa-solid fa-minus"></i>
+                                      </button>
+                                    </div>
+                                  </td>
+                                  <td>{{item.nombre}}</td>
+                                  <td>{{item.precio}}</td>
+                                  <td id="delete">
+                                    <button class="ico-delete" (click)="eliminarItem(i)">
+                                      <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          
+                    </div>
+                </div>                   
+            </div>
+            <div class="content-info">
+                <div class="information">
+                    <div class="info-subtotal">
+                        <div class="subtotal">
+                            <span>Subtotal S/</span>
+                        </div>
+                        <div class="data-subtotal">
+                            <span>{{ subtotal | currency: 'S/': 'symbol' }}</span>
+                        </div>
+                    </div>
+                    <div class="info-igv">
+                        <div class="igv">
+                            <span>IGV S/</span>
+                        </div>
+                        <div class="data-igv">
+                            <span>{{ igv | currency: 'S/': 'symbol' }}</span>
+                        </div>
+                    </div>
+
+                    <div class="info-total">
+                        <div class="total">
+                            <span>Total S/</span>
+                        </div>
+                        <div class="data-total">
+                            <!-- Mostramos el total después de aplicar descuento -->
+                            <span>{{ calcularTotal() | currency: 'S/': 'symbol' }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-save">
+                    <div class="save">
+                        <button (click)="limpiar()">Limpiar</button>
+                        <button (click)="save()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </form>
+</section>

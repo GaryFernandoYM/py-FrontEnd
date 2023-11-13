@@ -1,0 +1,363 @@
+
+.container-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 270px;
+    /* background: #fff; */
+    transition: all 0.4s ease; 
+} 
+.container-sidebar.close {
+    width: 75px; 
+}
+.container-sidebar .content-header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--color-gray-one);
+    padding: 0 10px;
+}
+.container-sidebar .content-header .header-logo {
+    height: 100%;
+    min-width: 55px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container-sidebar .content-header .header-logo img {
+    height: 45px;
+    width: 40px;
+}
+.container-sidebar .content-header .header-text {
+    font-size: 30px;
+    color: var(--color-title);
+    font-weight: 500px;
+    transition: all 1.2s ease;
+    font-weight: 600;
+    font-family: 'Mandali', sans-serif; 
+} 
+.container-sidebar .content-header .header-text.close-logo{
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+/* --------------navigation */
+ .content-navigation  {
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+ .content-navigation .navigation-top{
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+}
+ .content-navigation .navigation-top .navigation-search {
+    width: 100%;
+    height: 70px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-gray-one);
+    cursor: pointer;
+}
+.content-navigation .navigation-top .navigation-search .search-input {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.content-navigation .navigation-top .navigation-search .search-input input {
+    width: 100%;
+    height: 100%;
+    padding-left: 55px;
+    transition: all 0.4s ease;
+    border: 1px solid var(--color-gray-one);
+    border-radius: 6px;
+    font-size: 16px;
+    color: var(--color-title-sidebar);
+    font-weight: 400;
+}
+.content-navigation .navigation-top .navigation-search .search-input input:focus{
+    outline-color: var(--color-gray-two);
+    transition: none;
+}
+.content-navigation .navigation-top .navigation-search .search-input input::placeholder{
+    color: var(--color-title-sidebar);
+}
+.content-navigation .navigation-top .navigation-search .search-input input.remove-padding {
+     padding-left: 0;
+}
+.content-navigation .navigation-top .navigation-search .search-input .input-icon {
+    position: absolute;
+    height: 100%;
+    min-width: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content-navigation .navigation-top .navigation-search .search-input .input-icon i {
+    font-size: 28px;
+    transform: translateX(2px);
+}
+
+/* navigation-menu */
+
+.content-navigation .navigation-top .navigation-menu{
+    width: 100%;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .title-menu{
+    position: relative;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .title-menu .title{
+    opacity: 1;
+    transition: all 1.2s ease;
+    font-size: 16px;
+    color: var(--color-gray-two);
+    font-weight: 500;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .title-menu .title.title-close{
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .title-menu .line{
+    position: absolute;
+    left: 50%;
+    height: 3px;
+    width: 30px;
+    transform: translateX(-50%);
+    border-radius: 30px;
+    display: none;
+    background: var(--color-gray-two);
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .title-menu .line.text-line {
+    display: block;
+}
+/* ----------items  */
+.content-navigation .navigation-top .navigation-menu .menu-item .item {
+    list-style: none;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 4px;
+    color: var(--color-title);
+    overflow: hidden;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .link:hover{
+    color: #fff;
+    background: var(--color-main);
+    display: flex;
+    align-items: center;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .link .link-icon{
+    height: 50px;
+    min-width: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .link .link-icon i{
+    font-size: 25px;
+}
+
+/* implementado el dropp open y close -------------------------------------------------------------*/
+.content-navigation .navigation-top .navigation-menu .menu-item .item .link .link-text{
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .link .link-text i{
+    font-size: 50px;
+    transition: none
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .link .link-text .dropdown-open{
+    font-size: 25px;
+    transition: all 0.3s ease;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .link .link-text .dropdown-open.rotate-icon{
+    rotate: 90deg;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .link .link-text.text-link {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}   
+.content-navigation .navigation-top .navigation-menu .menu-item .item .dropdown{
+    width: calc(100% - 25px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    /* background: pink; */
+    height: 0;
+    transition: height .4s;
+    overflow: hidden;
+    /* border-left: 3px solid #000; */
+    margin-left: 25px;
+}  
+.content-navigation .navigation-top .navigation-menu .menu-item .item .dropdown.active-dropdown{
+    height: 108px;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .dropdown.remov-margin{
+    width: calc(100% + 25px);
+    margin-left: 0;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .dropdown .dropdown-option{
+    display: none;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+    width: 100%;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .dropdown .dropdown-option.visible-dropdown {
+    display: block;
+    opacity: 1;
+    max-height: 200px;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .dropdown .dropdown-option .option{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    margin-bottom: 4px;
+    /* background: orange; */
+    color: #707070;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .dropdown .dropdown-option .option .text-option{
+    color: var(--color-title-sidebar);
+    user-select: none;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .dropdown .dropdown-option .option:hover{
+    background: var(--color-main);
+    color: #fff;
+    cursor: pointer;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .dropdown .dropdown-option .option:hover .text-option{
+    color: #fff;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .dropdown .dropdown-option .option .option-icon{
+    height: 50px;
+    min-width: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .dropdown .dropdown-option .option .option-icon i{
+    font-size: 23px;
+    color: var(--color-title-sidebar);
+}
+.content-navigation .navigation-top .navigation-menu .menu-item .item .dropdown .dropdown-option .option:hover .option-icon i {
+    color: #fff;
+}
+
+/* -----------------------------------------------------menu droop */
+
+/* --avigation-bottom--- */
+
+.content-navigation .navigation-bottom {
+    width: 100%;
+    height: 100%;
+    /* background: orchid; */
+}
+.content-navigation .navigation-bottom .navigation-accout{
+    /* height: 350px; */
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+.content-navigation .navigation-bottom .navigation-accout .account-item .title-account{
+    position: relative;
+    height: 50px;
+    /* background: plum; */
+    display: flex;
+    align-items: center;
+    /* background: red; */
+}
+.content-navigation .navigation-bottom .navigation-accout .account-item .title-account .title{
+    opacity: 1;
+    transition: all 1.2s ease;
+    color: var(--color-gray-two);
+    font-weight: 500;
+}
+.content-navigation .navigation-bottom .navigation-accout .account-item .title-account .title.account-close {
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.content-navigation .navigation-bottom .navigation-accout .account-item .title-account .line {
+    position: absolute;
+    left: 50%;
+    height: 3px;
+    width: 30px;
+    background: var(--color-gray-two);
+    transform: translateX(-50%);
+    border-radius: 30px;
+    display: none;
+}
+.content-navigation .navigation-bottom .navigation-accout .account-item .title-account .line.close-line {
+    display: block;
+}
+
+/* item */
+
+.content-navigation .navigation-bottom .navigation-accout .account-item .item {
+    list-style: none;
+}
+.content-navigation .navigation-bottom .navigation-accout .account-item .item .link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 4px;
+    color: var(--color-title);
+    overflow: hidden;
+}
+.content-navigation .navigation-bottom .navigation-accout .account-item .item .link:hover {
+    color: #fff;
+    background: var(--color-main);
+    display: flex;
+    align-items: center;
+}
+.content-navigation .navigation-bottom .navigation-accout .account-item .item .link .link-icon{
+    height: 50px;
+    min-width: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+} 
+.content-navigation .navigation-bottom .navigation-accout .account-item .item .link .link-icon i {
+    font-size: 21px;
+}
+.content-navigation .navigation-bottom .navigation-accout .account-item .item .link .link-text-account{
+    opacity: 1;
+    /* background: red; */
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+.content-navigation .navigation-bottom .navigation-accout .account-item .item .link .link-text-account.accout-text-link {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+
+
+  /*-------------------Dark Contaienr--------------*/
+
+.content-navigation .navigation-bottom .navigation-dark{
+
+    height: 60px;
+    /* background: rgb(160, 154, 154); */
+    border-top: 1px solid #D7D7D7;
+}
+
+
+

@@ -1,0 +1,144 @@
+<section class="container-category" #container> 
+    <div class="content-header">
+        <div class="header-text">
+            <span>Inventario / Categoria</span>
+        </div>
+        <span class="header-line"></span>
+    </div>
+    <div class="content-category">
+        <div class="category-options">
+            <div class="option-left">
+                <button class="button-create" #open (click)="openModal(true,true)">
+                    <div class="create-ico">
+                        <i class="fa-regular fa-plus"></i>
+                    </div>
+                    <span class="text">Nuevo</span>
+                </button>
+
+                <button class="button-rows">
+                    <div class="rows-ico">
+                        <div class="ico">
+                            <i class='bx bx-window-alt'></i>
+                        </div>
+                        <span class="text">Filas</span>
+                    </div>
+                    <div class="row">
+                        <i class='bx bx-chevron-right' ></i>
+                    </div>
+                </button>
+            </div>
+            <div class="option-right">
+                <div class="search-input">
+                    <span class="input-icon">
+                        <i class='bx bx-search'></i>
+                    </span>
+                    <input type="text" placeholder="Buscar" id="search-input">
+                </div>
+            </div>
+        </div>
+
+        <div class="category-table">
+            <div class="container-table">
+
+                <div class="content-table">
+
+                    <div class="table-header">
+                        <table>
+                            <thead>
+                              <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                          </table>
+                    </div>
+
+                    <div class="table">
+                        <table>
+                            <tbody>
+                                <tr *ngFor="let item of listCategory">
+                                    <td>{{item.id}}</td>
+                                    <td>{{item.nombre}}</td>
+                                    <td>{{item.descripcion}}</td>
+                                    <td>{{estadoText(item.estado)}}</td>
+                                    <td>
+                                        <div class="content-actions">
+
+
+                                            <button class="ico-update" #update (click)="openModal(false,false)" (click)="selectItem(item)">
+                                                <i class="fa-sharp fa-solid fa-pen" ></i>
+                                            </button>
+
+
+
+                                            
+                                            <button class="ico-delete" (click)="delete(item.id)">
+                                                <i class="fa-solid fa-trash-can"></i> 
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="content-pagination">
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- --------------------------modal------------------------- -->
+
+<section class="conatiner-category" #modal>
+    <div class="category-header">
+        <div class="text-headar">
+            <span *ngIf="isNew">Nueva Categoria</span>
+            <span *ngIf="!isNew">Actualizar Categoria</span>
+        </div>
+        <div class="ico-header">
+            <i class="fas fa-regular fa-xmark" #close (click)="closeModal()"></i>
+        </div>
+    </div>
+    <div class="content-form">
+        <form action=""  [formGroup]="formCategory" (ngSubmit)="save()">
+            <div class="input-name">
+                <span class="text-name">Nombre</span>
+                <input type="text" formControlName="nombre">
+            </div>
+            <div class="input-description">
+                <span class="text-name">Descripcion</span>
+                <textarea formControlName="descripcion"></textarea>
+            </div>
+            <div class="inputs-state">
+                <span class="text-state">Estado</span>
+                <div class="state-active">
+                    <input type="radio" id="activo" name="estado" value="true" formControlName="estado" checked>
+                    <span>Activo</span>
+                </div>
+                <div class="state-inactive">
+                    <input type="radio" id="inactivo" name="estado" value="false" formControlName="estado">
+                    <span>Inactivo</span>
+                </div>
+            </div>  
+            <div class="content-buttons">
+                <div class="buttons">
+                    <div class="button-create">
+                        <button *ngIf="isNewBtn" type="submit" [disabled]="formCategory.invalid" (click)="closeModal()">Crear</button>
+                        <button *ngIf="!isNewBtn" (click)="closeModal()" (click)="update()">Actualizar</button>
+                    </div>
+                    <div class="button-cancel">
+                        <button type="button" #cancel (click)="closeModal()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

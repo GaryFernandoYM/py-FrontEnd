@@ -1,0 +1,183 @@
+<section class="container-category" #container>
+    <div class="content-header">
+        <div class="header-text">
+            <span>Clientes</span>
+        </div>
+        <span class="header-line"></span> 
+    </div>
+    <div class="content-category">
+        <div class="category-options">
+            <div class="option-left">
+                <button class="button-create" #open (click)="openModal(true,true)">
+                    <div class="create-ico">
+                        <i class="fa-regular fa-plus"></i>
+                    </div>
+                    <span class="text">Nuevo</span> 
+                </button> 
+
+                <button class="button-rows">
+                    <div class="rows-ico">
+                        <div class="ico">
+                            <i class='bx bx-window-alt'></i>
+                        </div>
+                        <span class="text">Filas</span>
+                    </div>
+                    <div class="row">
+                        <i class='bx bx-chevron-right' ></i>
+                    </div>
+                </button>
+            </div>
+            <div class="option-right">
+                <div class="search-input">
+                    <span class="input-icon">
+                        <i class='bx bx-search'></i>
+                    </span>
+                    <input type="text" placeholder="Buscar" id="search-input">
+                </div>
+                <div class="option-filter">
+                    <span>Filtrar</span>
+                    <i class="fa-solid fa-filter"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-table">
+            <div class="container-table">
+
+                <div class="content-table">
+
+                    <div class="table-header">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Sexo</th>
+                                    <th>Documento</th>
+                                    <th>Direccion</th>
+                                    <th>Telefono</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                          </table>
+                    </div>
+
+                    <div class="table">
+                        <table>
+                            <tbody>
+                                <tr *ngFor="let item of listClients">
+                                    <td>{{item.id}}</td>
+                                    <td>{{item.nombres}}</td>
+                                    <td>{{item.apellidos}}</td>
+                                    <td>{{item.documento}}</td>
+                                    <td>{{sexoText(item.sexo)}}</td>
+                                    <td>{{item.direccion}}</td>
+                                    <td>{{item.telefono}}</td>
+                                    <td>
+                                        <div class="content-actions">
+                                            <button class="ico-update" #updateBtn (click)="openModal(false,false)" (click)="selectItem(item)">
+                                                <i class="fa-sharp fa-solid fa-pen"></i>
+                                            </button>
+                                            <button class="ico-delete" (click)="delete(item.id)">
+                                                <i class="fa-solid fa-trash-can"></i> 
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="content-pagination">
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="container-modal" #modal >
+    <div class="modal-header">
+
+
+
+        <span id="create-client" *ngIf="isNew">Nuevo Cliente</span>
+        <span id="update-client" *ngIf="!isNew">Actualizar Cliente</span>
+
+
+        <div class="close-icon">
+            <i class="fas fa-regular fa-xmark" #close (click)="closeModal()"></i>
+        </div>
+    </div>
+    <form action="" class="modal-form" [formGroup]="formClient" (ngSubmit)="save()">
+        <div class="inputs-content">
+
+            <div class="content-top">
+                <div class="top-inputs">
+                    <div class="input-name">
+                        <input type="text" formControlName="nombres">
+                        <span class="text-name">Nombre</span>
+                    </div>
+                    <div class="input-last">
+                        <input type="text" formControlName="apellidos">
+                        <span class="text-name">Apellidos</span>
+                    </div>
+                </div>
+
+
+                <div class="mid-input">
+                    <div class="input-document">
+                        <input type="text" formControlName="documento">
+                        <span class="text-name">Documento</span>
+                    </div>
+                    <div class="input-sexo">
+                        
+                        <div class="sexo-content">
+                            <div class="content-man">
+                                <input type="radio" id="activo" name="sexo" value="true" formControlName="sexo" checked>
+                                <span>Hombre</span>
+                            </div>
+                            <div class="content-woman">
+                                <input type="radio" id="inactivo" name="sexo" value="false" formControlName="sexo">
+                                <span>Mujer</span>
+                            </div>
+                        </div>
+                        <p class="text-name">Sexo<p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="content-line">
+                <div class="line"></div>
+            </div>
+            <div class="content-bottom">
+                <span>Información Adicional</span>
+                <div class="content-inputs">
+                    <div class="input-direction">
+                        <input type="text" formControlName="direccion">
+                        <span class="text-name">Direccion</span>
+                    </div>
+                    <div class="input-telefono">
+                        <input type="text" formControlName="telefono">
+                        <span class="text-name" >Telefono</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="modal-buttons">
+            <div class="button-create">
+                <button *ngIf="isNewBtn" type="submit" [disabled]="formClient.invalid" (click)="closeModal()">Crear</button>
+                <button *ngIf="!isNewBtn" (click)="updateCli()" (click)="closeModal()">Actualizar</button>
+            </div>
+            <div class="button-cancel" >
+                <button type="button" #cancel (click)="closeModal()">Cancelar</button>
+            </div>
+        </div>
+    </form>
+</section>

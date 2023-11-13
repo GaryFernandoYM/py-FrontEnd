@@ -1,0 +1,36 @@
+
+<section class="panel-container">
+    <div class="panel-content"> 
+
+        <div class="content" #content [class.active]="tabSeleccionado === 0">
+            <app-start></app-start>
+        </div>
+        <div class="content" #content [class.active]="tabSeleccionado === 1">
+            <app-category></app-category>
+        </div>
+        <div class="content" #content [class.active]="tabSeleccionado === 2">
+            <app-product></app-product>
+        </div>
+        <div class="content" #content [class.active]="tabSeleccionado === 3">
+            <app-sales></app-sales>
+        </div>
+        <div class="content" #content [class.active]="tabSeleccionado === 4">
+            <h2>5</h2>
+        </div>
+        <div class="content" #content [class.active]="tabSeleccionado === 5">
+            <app-client></app-client>
+        </div>
+        <div class="content" #content [class.active]="tabSeleccionado === 6">
+            <h2>7</h2>
+        </div>
+        <div class="content" #content [class.active]="tabSeleccionado === 7">
+            <h2>8</h2>
+        </div>     
+        <div class="content" #content [class.active]="tabSeleccionado === 8">
+            <h2>9</h2>
+        </div> 
+        <div class="content" #content [class.active]="tabSeleccionado === 9">
+            <h2>10</h2>
+        </div> 
+    </div>  
+</section>

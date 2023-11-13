@@ -1,0 +1,19 @@
+<div class="container-dashboard">  
+
+  <section class="sidebar" #sidebar [ngClass]="{ 'close': isSidebarHidden }">
+    <app-sidebar></app-sidebar>
+  </section>
+
+  <section class="content" id="content">
+
+    <header class="content-header">
+      <app-header></app-header>
+    </header>
+
+    <main class="content-main">
+      <app-main></app-main>
+    </main>
+
+  </section>
+
+</div>  
